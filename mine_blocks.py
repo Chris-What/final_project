@@ -19,3 +19,21 @@ class World(Entity):
                     origin_y=0.5
                 )
                 self.boxes.append(box)
+
+    def handle_input(self, key):
+        for box in self.boxes:
+            if box.hovered:
+                if key == "left mouse down":
+                    new = Button(
+                        color=color.white,
+                        model="cube",
+                        position=box.position + mouse.normal,
+                        texture="grass.png",
+                        parent=self,
+                        origin_y=0.5
+                    )
+                    self.boxes.append(new)
+                
+                elif key == "right mouse down":
+                    self.boxes.remove(box)
+                    destroy(box)
