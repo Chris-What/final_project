@@ -37,3 +37,10 @@ class World(Entity):
                 elif key == "right mouse down":
                     self.boxes.remove(box)
                     destroy(box)
+
+class MyApp(Ursina):
+    def __init__(self):
+        super().__init__()
+        self.player = FirstPersonController()
+        self.sky = Sky()
+        self.world = World()
