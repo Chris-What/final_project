@@ -42,3 +42,8 @@ app = Ursina()
 player = FirstPersonController()
 sky = Sky()
 world = World()
+
+def input(key):
+    world.handle_input(key)
+
+app.run()
