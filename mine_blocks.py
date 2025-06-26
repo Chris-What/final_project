@@ -1,3 +1,4 @@
+#import necessary game components.
 from ursina import *
 from ursina.prefabs.first_person_controller import FirstPersonController
 
@@ -7,6 +8,7 @@ class World(Entity):
         self.boxes = []
         self.build_world(size_x, size_z)
 
+    #loop through a grid of size_x and size_z, and place a cube at each position.
     def build_world(self, size_x, size_z):
         for block in range(size_x):
             for cube in range(size_z):
@@ -20,6 +22,7 @@ class World(Entity):
                 )
                 self.boxes.append(box)
 
+    #check all boxes, if hovered:left click to add a new cube next to it, or right click to destroy a cube.
     def handle_input(self, key):
         for box in self.boxes:
             if box.hovered:
@@ -38,12 +41,15 @@ class World(Entity):
                     self.boxes.remove(box)
                     destroy(box)
 
+#create the game engine app, a player that can walk around using a first person camera and controls, a sky background, and the world of blocks.
 app = Ursina()
 player = FirstPersonController()
 sky = Sky()
 world = World()
 
+#input functions that listens to the user's actions
 def input(key):
     world.handle_input(key)
 
+#start the game loop
 app.run()
