@@ -44,3 +44,6 @@ class MyApp(Ursina):
         self.player = FirstPersonController()
         self.sky = Sky()
         self.world = World()
+
+    def input(self, key):
+        self.world.handle_input(key)
